@@ -1,16 +1,22 @@
 package com.guilleavi.contactsmanager.entities;
 
+import org.springframework.data.annotation.Id;
+
 //@Entity
 public class Contact {
 
-    private Long id;
-    private String firstName;
-    private String lastName;
+    private final @Id Long id;
+    private final String firstName;
+    private final String lastName;
 
     public Contact(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Contact withId(Long id) {
+        return new Contact(id, this.firstName, this.lastName);
     }
 
     public Long getId() {
