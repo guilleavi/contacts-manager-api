@@ -2,9 +2,12 @@ package com.guilleavi.contactsmanager.entities;
 
 import com.guilleavi.contactsmanager.enums.PersonCategory;
 import com.guilleavi.contactsmanager.enums.PersonStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -15,14 +18,19 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
+@Document("Person")
+@AllArgsConstructor
 public class Person implements Serializable {
 
-    private final @Id @Min(value=1) Long id;
+    private static final long serialVersionUID = 2078894547217940867L;
+
+    @Id
+    private final @Min(value = 1) BigInteger id;
 
     private final @NotBlank String name;
 
     private final Map<String, String> taxIdentifier;
-    
+
     private final @NotBlank String status;
 
     private final @NotEmpty Set<String> categories;
@@ -38,77 +46,45 @@ public class Person implements Serializable {
      *
      * @param id   person id
      * @param name person name
-     * @return
+     * @return new person with basic data
      */
-    static Person basicData(Long id,
-                            String name) {
-        return new Person(id, name, null, null, null, null, null, null);
+    public static Person basicData(BigInteger id, String name) {
+        return new Person(
+                id, name, null, PersonStatus.ACTIVE.name(),
+                new HashSet<>(Arrays.asList(PersonCategory.CLIENT.name())),
+                null, null, null
+        );
     }
 
-    /**
-     * Set only basic and contact data, the status will be set as Active by default
-     *
-     * @param id         person id
-     * @param name       person name
-     * @param categories person category: provider, client, bank, other. By default: client
-     * @param phones     list of phones with its description
-     * @param emails     list of emails with its description
-     * @param addresses  list of addresses with its description
-     * @return
-     */
-    static Person contactData(Long id,
-                              String name,
-                              Set<String> categories,
-                              Set<Map<String, String>> phones,
-                              Set<Map<String, String>> emails,
-                              Set<Address> addresses) {
-
-        return new Person(id, name, null, null, categories, phones, emails, addresses);
+    public BigInteger getId() {
+        return id;
     }
 
-    /**
-     * Set all the person data
-     *
-     * @param id            person id
-     * @param name          person name
-     * @param taxIdentifier tax identifier information: type and number
-     * @param status        person status: active, inactive. By default: active.
-     * @param categories    person category: provider, client, bank. By default: client
-     * @param phones        list of phones with its description
-     * @param emails        list of emails with its description
-     * @param addresses     list of addresses with its description
-     * @return
-     */
-    static Person fullData(Long id,
-                           String name,
-                           Map<String, String> taxIdentifier,
-                           String status,
-                           Set<String> categories,
-                           Set<Map<String, String>> phones,
-                           Set<Map<String, String>> emails,
-                           Set<Address> addresses) {
-
-        return new Person(id, name, taxIdentifier, status, categories, phones, emails, addresses);
+    public String getName() {
+        return name;
     }
 
-    private Person(Long id,
-                   String name,
-                   Map<String, String> taxIdentifier,
-                   String status,
-                   Set<String> categories,
-                   Set<Map<String, String>> phones,
-                   Set<Map<String, String>> emails,
-                   Set<Address> addresses) {
-        String defaultStatus = PersonStatus.ACTIVE.name(); // TODO: parameterize this
-        Set<String> defaultCategory = new HashSet<>(Arrays.asList(PersonCategory.CLIENT.name())); // TODO: parameterize this
+    public Map<String, String> getTaxIdentifier() {
+        return taxIdentifier;
+    }
 
-        this.id = id;
-        this.name = name;
-        this.taxIdentifier = taxIdentifier;
-        this.status = null != status ? status : defaultStatus;
-        this.categories = null != categories && !categories.isEmpty() ? categories : defaultCategory;
-        this.phones = phones;
-        this.emails = emails;
-        this.addresses = addresses;
+    public String getStatus() {
+        return status;
+    }
+
+    public Set<String> getCategories() {
+        return categories;
+    }
+
+    public Set<Map<String, String>> getPhones() {
+        return phones;
+    }
+
+    public Set<Map<String, String>> getEmails() {
+        return emails;
+    }
+
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 }

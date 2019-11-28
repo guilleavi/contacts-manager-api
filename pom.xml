@@ -25,18 +25,19 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--SpringData-->
+        <!--SpringData JPA-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
         </dependency>
 
-        <!--MongoDB-->
+        <!--SpringData MongoDB-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
         </dependency>
 
+        <!--Lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
