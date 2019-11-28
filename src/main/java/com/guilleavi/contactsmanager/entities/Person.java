@@ -6,17 +6,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
+import java.math.BigInteger;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 @Document("Person")
 @AllArgsConstructor
@@ -51,7 +50,7 @@ public class Person implements Serializable {
     public static Person basicData(BigInteger id, String name) {
         return new Person(
                 id, name, null, PersonStatus.ACTIVE.name(),
-                new HashSet<>(Arrays.asList(PersonCategory.CLIENT.name())),
+                new HashSet<>(Collections.singletonList(PersonCategory.CLIENT.name())),
                 null, null, null
         );
     }

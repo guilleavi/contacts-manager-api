@@ -15,8 +15,12 @@ import java.util.List;
 @Service
 public class PeopleServiceImpl implements PeopleService {
 
+    private final MongoTemplate mongoTemplate;
+
     @Autowired
-    MongoTemplate mongoTemplate;
+    public PeopleServiceImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Override
     public List<Person> getPeople() {

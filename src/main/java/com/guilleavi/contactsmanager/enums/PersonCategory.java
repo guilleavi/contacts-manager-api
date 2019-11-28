@@ -4,5 +4,5 @@ public enum PersonCategory {
     PROVIDER,
     CLIENT,
     BANK,
-    OTHER;
+    OTHER
 }
