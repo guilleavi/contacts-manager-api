@@ -1,9 +1,12 @@
-package com.guilleavi.contactsmanager.entities;
+package com.guilleavi.contactsmanager.model;
 
 import com.guilleavi.contactsmanager.enums.PersonCategory;
 import com.guilleavi.contactsmanager.enums.PersonStatus;
 import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Email;
@@ -17,8 +20,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-@Document("Person")
+@Data
 @AllArgsConstructor
+@Document(collection = "Person")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 2078894547217940867L;
@@ -34,10 +38,13 @@ public class Person implements Serializable {
 
     private final @NotEmpty Set<String> categories;
 
+    @DBRef
     private final Set<Map<@NotEmpty String, String>> phones;
 
+    @DBRef
     private final Set<Map<@Email String, String>> emails;
 
+    @DBRef
     private final Set<Address> addresses;
 
     /**
@@ -55,35 +62,4 @@ public class Person implements Serializable {
         );
     }
 
-    public BigInteger getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Map<String, String> getTaxIdentifier() {
-        return taxIdentifier;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public Set<String> getCategories() {
-        return categories;
-    }
-
-    public Set<Map<String, String>> getPhones() {
-        return phones;
-    }
-
-    public Set<Map<String, String>> getEmails() {
-        return emails;
-    }
-
-    public Set<Address> getAddresses() {
-        return addresses;
-    }
 }

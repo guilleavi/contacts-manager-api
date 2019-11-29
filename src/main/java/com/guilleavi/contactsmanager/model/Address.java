@@ -1,4 +1,4 @@
-package com.guilleavi.contactsmanager.entities;
+package com.guilleavi.contactsmanager.model;
 
         import lombok.RequiredArgsConstructor;
 
