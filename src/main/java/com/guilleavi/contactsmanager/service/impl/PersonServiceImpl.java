@@ -29,14 +29,13 @@ public class PersonServiceImpl implements PersonService {
     @Override
     @Transactional(readOnly = true)
     public List<PersonDTO> getPeople() {
-        return mongoTemplate.findAll(Person.class).stream().map(person -> PersonMapper.toPersonDto(person))
+        return mongoTemplate.findAll(Person.class).stream().map(PersonMapper::toPersonDto)
                 .collect(Collectors.toList());
 }
-
     @Override
     @Transactional
-    public Person addPerson(BigInteger personId) {
+    public PersonDTO addPerson(BigInteger personId) {
         Person person = Person.basicData(personId, "John " + personId + " Doe");
-        return mongoTemplate.insert(person, "Person");
+        return PersonMapper.toPersonDto(mongoTemplate.insert(person, "Person"));
     }
 }

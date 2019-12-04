@@ -19,6 +19,9 @@ public class MongoConfig extends AbstractMongoClientConfiguration  {
     @Value("${spring.data.mongodb.port}")
     private String port;
 
+    @Value("${spring.data.mongodb.database}")
+    private String database;
+
     @Override
     public MongoClient mongoClient() {
         return MongoClients.create(host + ":" + port);
@@ -26,13 +29,13 @@ public class MongoConfig extends AbstractMongoClientConfiguration  {
 
     @Override
     public MongoTemplate mongoTemplate() {
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoClient(), "contacts-manager");
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoClient(), database);
         mongoTemplate.setWriteResultChecking(WriteResultChecking.EXCEPTION);
         return mongoTemplate;
     }
 
     @Override
     protected String getDatabaseName() {
-        return "contacts-manager";
+        return database;
     }
 }

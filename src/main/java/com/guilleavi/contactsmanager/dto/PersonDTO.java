@@ -2,12 +2,8 @@ package com.guilleavi.contactsmanager.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.guilleavi.contactsmanager.model.Address;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import java.math.BigInteger;
 import java.util.Map;

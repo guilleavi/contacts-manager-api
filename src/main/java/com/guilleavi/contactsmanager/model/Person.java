@@ -4,7 +4,6 @@ import com.guilleavi.contactsmanager.enums.PersonCategory;
 import com.guilleavi.contactsmanager.enums.PersonStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
