@@ -2,26 +2,18 @@ package com.guilleavi.contactmanager.service.impl;
 
 import com.guilleavi.contactmanager.AbstractTest;
 import com.guilleavi.contactsmanager.dto.PersonDTO;
-import com.guilleavi.contactsmanager.dto.mapper.PersonMapper;
 import com.guilleavi.contactsmanager.model.Person;
-import com.guilleavi.contactsmanager.service.PersonService;
 import com.guilleavi.contactsmanager.service.impl.PersonServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;

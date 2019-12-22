@@ -1,8 +1,6 @@
 package com.guilleavi.contactsmanager.service;
 
 import com.guilleavi.contactsmanager.dto.PersonDTO;
-import com.guilleavi.contactsmanager.model.Person;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -23,7 +21,7 @@ public interface PersonService {
      * Returns list of all clients, providers, banks and other
      *
      * @param personId person to add id
-     * @return list of people
+     * @return  new person
      */
     PersonDTO addPerson(BigInteger personId);
 }
